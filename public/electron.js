@@ -45,6 +45,7 @@ function createWindow() {
   pdfWindow.addSupport(mainWindow);
 
   const isDev = !!process.env.APP_URL;
+
   if (process.env.APP_URL) {
     mainWindow.loadURL(process.env.APP_URL);
   } else {
@@ -127,7 +128,7 @@ function listenUrlLoader() {
     response.end();
   });
 
-  server.listen(6280, '0.0.0.0');
+  server.listen(6280, '0.0.0.0').on('error', ()=>{});
 }
 
 // This method will be called when Electron has finished

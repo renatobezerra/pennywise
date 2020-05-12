@@ -3,7 +3,7 @@
   "description": "Pennywise – Cross-platform application that allows you to open URLs in a floating window that always stays on top.",
   "productName": "Pennywise",
   "author": "Kamran Ahmed <kamranahmed.se@gmail.com>",
-  "version": "0.7.0",
+  "version": "0.9.0",
   "private": true,
   "main": "public/electron.js",
   "homepage": "./",
@@ -30,6 +30,9 @@
     "_build": "react-scripts build",
     "start": "concurrently \"yarn _react\" \"wait-on http://localhost:3000 && yarn _electron\" ",
     "build": "yarn _build && build --mac --win --linux --x64 --ia32 -p always",
+    "build-win": "yarn _build && build --win --x64 --ia32 -p always",
+    "build-linux": "yarn _build && build --linux --x64 --ia32 -p always",
+    "build-mac": "yarn _build && build --mac --x64 --ia32 -p always",
     "icons": "electron-icon-maker -i public/img/pennywise.png -o public",
     "test": "mocha"
   },
@@ -111,7 +114,7 @@
     "nodemon": "^1.19.1",
     "popper.js": "^1.15.0",
     "spectron": "^5.0.0",
-    "wait-on": "^3.2.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.6.4",
+    "wait-on": "^3.2.0"
   }
 }
