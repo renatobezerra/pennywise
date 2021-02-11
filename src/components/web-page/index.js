@@ -6,7 +6,7 @@ import parseUrl from 'url-parse';
 import './style.scss';
 import NavBar from '../nav-bar';
 
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer, remote } = window.require('electron');
 
 // Used by WebView while loading any pages
 const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36';
@@ -15,7 +15,8 @@ class WebPage extends React.Component {
   webView = React.createRef();
   state = {
     url: this.props.url,
-    showNav: this.props.showNav
+    showNav: this.props.showNav,
+    proc: this.props.proc
   };
 
   /**
@@ -64,6 +65,15 @@ class WebPage extends React.Component {
       this.setState({
         url: event.url
       });
+    });
+
+    currentWebView.addEventListener('dom-ready', () => {
+      let proc = this.state.proc;
+      setTimeout(function(){
+        if(proc){
+          currentWebView.send("run-proc", proc);
+        }
+      }, 5000);
     });
   }
 
@@ -136,6 +146,7 @@ class WebPage extends React.Component {
           className="page"
           src={ this.props.url }
           autosize="on"
+          preload={`file://${remote.process.cwd()}/src/preload/inyector.js`}
         />
       </div>
     );

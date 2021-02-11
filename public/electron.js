@@ -28,7 +28,7 @@ if (flashPath && fs.existsSync(flashPath)) {
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    title: 'Pennywise',
+    title: 'Browser',
     width: 700,
     height: 600,
     autoHideMenuBar: true,

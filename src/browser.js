@@ -11,6 +11,7 @@ class Browser extends React.Component {
   state = {
     url: yargs.url ? prepareUrl(yargs.url) : '',
     showNav: !yargs.hidenav ? true : false,
+    proc: yargs.proc || '',
     embedVideosEnabled: true
   };
 
@@ -42,7 +43,7 @@ class Browser extends React.Component {
       <div className='browser-wrap'>
         {
           this.state.url
-            ? <WebPage url={ this.state.url } onUrl={ this.onUrl } showNav={this.state.showNav}/>
+            ? <WebPage url={ this.state.url } onUrl={ this.onUrl } showNav={this.state.showNav} proc={this.state.proc} />
             : <EmptyPage onUrl={ this.onUrl }/>
         }
       </div>
