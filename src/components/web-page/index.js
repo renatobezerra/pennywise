@@ -146,7 +146,7 @@ class WebPage extends React.Component {
           className="page"
           src={ this.props.url }
           autosize="on"
-          preload={`file://${remote.process.cwd()}/src/preload/inyector.js`}
+          preload={`file://${remote.app.getAppPath()}/public/preload/inyector.js`}
         />
       </div>
     );
